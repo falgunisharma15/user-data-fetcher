@@ -1,0 +1,28 @@
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(res => res.json())
+  .then(data => {
+    // Change identities after fetch
+    data.forEach(user => {
+      if (user.id === 1) {
+        user.name = "Anjali Aswani";
+        user.email = "anjali@example.com";
+        user.address.city = "Udaipur";
+      }
+      if (user.id === 2) {
+        user.name = "Rahul Mehta";
+        user.email = "rahul@demo.com";
+        user.address.city = "Jaipur";
+      }
+    });
+
+    // Display updated data
+    data.forEach(user => {
+      document.body.innerHTML += `
+        <div>
+          <h2>${user.name}</h2>
+          <p>Email: ${user.email}</p>
+          <p>City: ${user.address.city}</p>
+        </div>
+      `;
+    });
+  });
